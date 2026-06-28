@@ -1,0 +1,97 @@
+{
+  "users": [
+    {
+      "_id": "6a4069ed0e6d19bc28b0eb09",
+      "fullName": "Jane Smith",
+      "universityEmail": "j.smith@dal.ca",
+      "studentId": "B01234567",
+      "passwordHash": "$2a$12$OPGQiZzrxsZMB.hPGooqOubZpK9OQ17OqJwDtVIdZ1JUfXyJracZO",
+      "role": "student",
+      "status": "active",
+      "createdAt": "2026-06-28T00:25:17.451Z",
+      "updatedAt": "2026-06-28T00:25:17.451Z",
+      "__v": 0
+    },
+    {
+      "_id": "6a4069ed0e6d19bc28b0eb0b",
+      "fullName": "Maya Patel",
+      "universityEmail": "maya.patel@dal.ca",
+      "studentId": "B07654321",
+      "passwordHash": "$2a$12$OPGQiZzrxsZMB.hPGooqOubZpK9OQ17OqJwDtVIdZ1JUfXyJracZO",
+      "role": "student",
+      "status": "active",
+      "createdAt": "2026-06-28T00:25:17.573Z",
+      "updatedAt": "2026-06-28T00:25:17.573Z",
+      "__v": 0
+    },
+    {
+      "_id": "6a4069ed0e6d19bc28b0eb0f",
+      "fullName": "Admin User",
+      "universityEmail": "admin@dal.ca",
+      "studentId": null,
+      "passwordHash": "$2a$12$OPGQiZzrxsZMB.hPGooqOubZpK9OQ17OqJwDtVIdZ1JUfXyJracZO",
+      "role": "admin",
+      "status": "active",
+      "createdAt": "2026-06-28T00:25:17.687Z",
+      "updatedAt": "2026-06-28T00:25:17.687Z",
+      "__v": 0
+    }
+  ],
+  "listings": [
+    {
+      "_id": "6a4069ed0e6d19bc28b0eb11",
+      "title": "Calculus: Early Transcendentals 8th Ed.",
+      "description": "Gently used copy, spine intact, no missing pages, minimal highlighting. Perfect for MATH 1000/2001.",
+      "price": 45,
+      "category": "Textbooks",
+      "condition": "Like New",
+      "images": [],
+      "seller": "6a4069ed0e6d19bc28b0eb09",
+      "status": "active",
+      "views": 0,
+      "__v": 0,
+      "createdAt": "2026-06-28T00:25:17.807Z",
+      "updatedAt": "2026-06-28T00:25:17.807Z"
+    },
+    {
+      "_id": "6a4069ed0e6d19bc28b0eb12",
+      "title": "HP 15in Laptop - Core i5, 8GB RAM",
+      "description": "Reliable laptop for note-taking and assignments. Light wear on the lid, works perfectly.",
+      "price": 320,
+      "category": "Electronics",
+      "condition": "Good",
+      "images": [],
+      "seller": "6a4069ed0e6d19bc28b0eb09",
+      "status": "active",
+      "views": 0,
+      "__v": 0,
+      "createdAt": "2026-06-28T00:25:17.808Z",
+      "updatedAt": "2026-06-28T00:25:17.808Z"
+    },
+    {
+      "_id": "6a4069ed0e6d19bc28b0eb13",
+      "title": "Ergonomic Desk Chair - Black",
+      "description": "Comfortable desk chair, adjustable height, great for long study sessions.",
+      "price": 60,
+      "category": "Furniture",
+      "condition": "Like New",
+      "images": [],
+      "seller": "6a4069ed0e6d19bc28b0eb0b",
+      "status": "active",
+      "views": 0,
+      "__v": 0,
+      "createdAt": "2026-06-28T00:25:17.808Z",
+      "updatedAt": "2026-06-28T00:25:17.808Z"
+    }
+  ],
+  "savedListings": [
+    {
+      "_id": "6a4069ed0e6d19bc28b0eb15",
+      "user": "6a4069ed0e6d19bc28b0eb0b",
+      "listing": "6a4069ed0e6d19bc28b0eb11",
+      "createdAt": "2026-06-28T00:25:17.928Z",
+      "updatedAt": "2026-06-28T00:25:17.928Z",
+      "__v": 0
+    }
+  ]
+}

@@ -1,0 +1,173 @@
+{
+  "info": {
+    "name": "CampusCart API - Assignment 2",
+    "description": "Auth + Product Listing endpoints for the CampusCart marketplace. Set the `baseUrl` and `token` collection variables, then run requests top-to-bottom for the required screenshots (success, error, auth failure/success, persistence).",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    { "key": "baseUrl", "value": "http://localhost:5000" },
+    { "key": "token", "value": "" },
+    { "key": "listingId", "value": "" }
+  ],
+  "item": [
+    {
+      "name": "01 - Register (success)",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"fullName\": \"Jane Smith\",\n  \"universityEmail\": \"j.smith@dal.ca\",\n  \"studentId\": \"B01234567\",\n  \"password\": \"Password123\"\n}"
+        },
+        "url": "{{baseUrl}}/api/auth/register"
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "if (pm.response.code === 201) {",
+              "  pm.collectionVariables.set('token', pm.response.json().token);",
+              "}"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "02 - Register (error: duplicate email)",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"fullName\": \"Jane Smith\",\n  \"universityEmail\": \"j.smith@dal.ca\",\n  \"password\": \"Password123\"\n}"
+        },
+        "url": "{{baseUrl}}/api/auth/register"
+      }
+    },
+    {
+      "name": "03 - Register (error: invalid email / weak password)",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"fullName\": \"Bad Input\",\n  \"universityEmail\": \"not-an-email\",\n  \"password\": \"123\"\n}"
+        },
+        "url": "{{baseUrl}}/api/auth/register"
+      }
+    },
+    {
+      "name": "04 - Login (auth failure: wrong password)",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"universityEmail\": \"j.smith@dal.ca\",\n  \"password\": \"WrongPassword\"\n}"
+        },
+        "url": "{{baseUrl}}/api/auth/login"
+      }
+    },
+    {
+      "name": "05 - Login (auth success)",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"universityEmail\": \"j.smith@dal.ca\",\n  \"password\": \"Password123\"\n}"
+        },
+        "url": "{{baseUrl}}/api/auth/login"
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "if (pm.response.code === 200) {",
+              "  pm.collectionVariables.set('token', pm.response.json().token);",
+              "}"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "06 - Create Listing (REQUIRED, success, persists data)",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" },
+          { "key": "Authorization", "value": "Bearer {{token}}" }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"title\": \"Calculus: Early Transcendentals 8th Ed.\",\n  \"description\": \"Gently used copy, spine intact, minimal highlighting.\",\n  \"price\": 45,\n  \"category\": \"Textbooks\",\n  \"condition\": \"Like New\"\n}"
+        },
+        "url": "{{baseUrl}}/api/listings"
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "if (pm.response.code === 201) {",
+              "  pm.collectionVariables.set('listingId', pm.response.json().listing._id);",
+              "}"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "07 - Create Listing (auth failure: no token)",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"title\": \"No auth listing\",\n  \"description\": \"Should be rejected\",\n  \"price\": 10,\n  \"category\": \"Other\",\n  \"condition\": \"Fair\"\n}"
+        },
+        "url": "{{baseUrl}}/api/listings"
+      }
+    },
+    {
+      "name": "08 - Create Listing (error: invalid body)",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" },
+          { "key": "Authorization", "value": "Bearer {{token}}" }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"title\": \"\",\n  \"description\": \"x\",\n  \"price\": -5,\n  \"category\": \"NotACategory\",\n  \"condition\": \"Fair\"\n}"
+        },
+        "url": "{{baseUrl}}/api/listings"
+      }
+    },
+    {
+      "name": "09 - Browse Listings (REQUIRED, public, search+filter+sort, proves persistence)",
+      "request": {
+        "method": "GET",
+        "url": "{{baseUrl}}/api/listings?category=Textbooks&sort=price_asc&page=1&limit=10"
+      }
+    },
+    {
+      "name": "10 - Get Listing By Id (view count increments)",
+      "request": {
+        "method": "GET",
+        "url": "{{baseUrl}}/api/listings/{{listingId}}"
+      }
+    },
+    {
+      "name": "11 - Get Listing By Id (error: not found)",
+      "request": {
+        "method": "GET",
+        "url": "{{baseUrl}}/api/listings/000000000000000000000000"
+      }
+    }
+  ]
+}
