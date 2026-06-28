@@ -12,9 +12,10 @@ function createApp() {
   const app = express();
 
   app.use(helmet());
+  const corsOrigin = process.env.CORS_ORIGIN || "*";
   app.use(
     cors({
-      origin: (process.env.CORS_ORIGIN || "*").split(","),
+      origin: corsOrigin === "*" ? "*" : corsOrigin.split(","),
     })
   );
   app.use(express.json({ limit: "1mb" }));

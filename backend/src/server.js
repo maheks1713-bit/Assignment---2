@@ -1,6 +1,13 @@
 require("dotenv").config();
+const dns = require("dns");
 const createApp = require("./app");
 const connectDB = require("./config/db");
+
+// Some hosts (e.g. Render) have unreliable IPv6 egress, which makes the TLS
+// handshake to MongoDB Atlas fail with a misleading "tlsv1 alert internal
+// error" instead of a clean connection error. Forcing IPv4 resolution first
+// avoids that path entirely.
+dns.setDefaultResultOrder("ipv4first");
 
 const PORT = process.env.PORT || 5000;
 
