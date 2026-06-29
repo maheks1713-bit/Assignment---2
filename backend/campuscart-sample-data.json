@@ -1,96 +1,96 @@
 {
   "users": [
     {
-      "_id": "6a4070e07e4e9dbd4fc6524c",
+      "_id": "6a41beff6980e8e79d3e1bf3",
       "fullName": "Jane Smith",
       "universityEmail": "j.smith@dal.ca",
       "studentId": "B01234567",
-      "passwordHash": "$2a$12$AwFOkgT.SWCOMDqJeWvXhuKv03AysseW9aeKAx9R0156F1AoT1La6",
+      "passwordHash": "$2a$12$P7tcJlj4.l7xubBK5cYYbOIUsJoU2OIgJKA6eBPMoG2W5g807A4g6",
       "role": "student",
       "status": "active",
-      "createdAt": "2026-06-28T00:54:56.181Z",
-      "updatedAt": "2026-06-28T00:54:56.181Z",
+      "createdAt": "2026-06-29T00:40:31.795Z",
+      "updatedAt": "2026-06-29T00:40:31.795Z",
       "__v": 0
     },
     {
-      "_id": "6a4070e07e4e9dbd4fc6524f",
+      "_id": "6a41beff6980e8e79d3e1bf5",
       "fullName": "Maya Patel",
       "universityEmail": "maya.patel@dal.ca",
       "studentId": "B07654321",
-      "passwordHash": "$2a$12$AwFOkgT.SWCOMDqJeWvXhuKv03AysseW9aeKAx9R0156F1AoT1La6",
+      "passwordHash": "$2a$12$P7tcJlj4.l7xubBK5cYYbOIUsJoU2OIgJKA6eBPMoG2W5g807A4g6",
       "role": "student",
       "status": "active",
-      "createdAt": "2026-06-28T00:54:56.299Z",
-      "updatedAt": "2026-06-28T00:54:56.299Z",
+      "createdAt": "2026-06-29T00:40:31.872Z",
+      "updatedAt": "2026-06-29T00:40:31.872Z",
       "__v": 0
     },
     {
-      "_id": "6a4070e07e4e9dbd4fc65251",
+      "_id": "6a41beff6980e8e79d3e1bf7",
       "fullName": "Admin User",
       "universityEmail": "admin@dal.ca",
       "studentId": null,
-      "passwordHash": "$2a$12$AwFOkgT.SWCOMDqJeWvXhuKv03AysseW9aeKAx9R0156F1AoT1La6",
+      "passwordHash": "$2a$12$P7tcJlj4.l7xubBK5cYYbOIUsJoU2OIgJKA6eBPMoG2W5g807A4g6",
       "role": "admin",
       "status": "active",
-      "createdAt": "2026-06-28T00:54:56.412Z",
-      "updatedAt": "2026-06-28T00:54:56.412Z",
+      "createdAt": "2026-06-29T00:40:31.938Z",
+      "updatedAt": "2026-06-29T00:40:31.938Z",
       "__v": 0
     }
   ],
   "listings": [
     {
-      "_id": "6a4070e07e4e9dbd4fc65253",
+      "_id": "6a41bf006980e8e79d3e1bf9",
       "title": "Calculus: Early Transcendentals 8th Ed.",
       "description": "Gently used copy, spine intact, no missing pages, minimal highlighting. Perfect for MATH 1000/2001.",
       "price": 45,
       "category": "Textbooks",
       "condition": "Like New",
       "images": [],
-      "seller": "6a4070e07e4e9dbd4fc6524c",
+      "seller": "6a41beff6980e8e79d3e1bf3",
       "status": "active",
       "views": 0,
       "__v": 0,
-      "createdAt": "2026-06-28T00:54:56.531Z",
-      "updatedAt": "2026-06-28T00:54:56.531Z"
+      "createdAt": "2026-06-29T00:40:32.022Z",
+      "updatedAt": "2026-06-29T00:40:32.022Z"
     },
     {
-      "_id": "6a4070e07e4e9dbd4fc65254",
+      "_id": "6a41bf006980e8e79d3e1bfa",
       "title": "HP 15in Laptop - Core i5, 8GB RAM",
       "description": "Reliable laptop for note-taking and assignments. Light wear on the lid, works perfectly.",
       "price": 320,
       "category": "Electronics",
       "condition": "Good",
       "images": [],
-      "seller": "6a4070e07e4e9dbd4fc6524c",
+      "seller": "6a41beff6980e8e79d3e1bf3",
       "status": "active",
       "views": 0,
       "__v": 0,
-      "createdAt": "2026-06-28T00:54:56.532Z",
-      "updatedAt": "2026-06-28T00:54:56.532Z"
+      "createdAt": "2026-06-29T00:40:32.022Z",
+      "updatedAt": "2026-06-29T00:40:32.022Z"
     },
     {
-      "_id": "6a4070e07e4e9dbd4fc65255",
+      "_id": "6a41bf006980e8e79d3e1bfb",
       "title": "Ergonomic Desk Chair - Black",
       "description": "Comfortable desk chair, adjustable height, great for long study sessions.",
       "price": 60,
       "category": "Furniture",
       "condition": "Like New",
       "images": [],
-      "seller": "6a4070e07e4e9dbd4fc6524f",
+      "seller": "6a41beff6980e8e79d3e1bf5",
       "status": "active",
       "views": 0,
       "__v": 0,
-      "createdAt": "2026-06-28T00:54:56.532Z",
-      "updatedAt": "2026-06-28T00:54:56.532Z"
+      "createdAt": "2026-06-29T00:40:32.022Z",
+      "updatedAt": "2026-06-29T00:40:32.022Z"
     }
   ],
   "savedListings": [
     {
-      "_id": "6a4070e07e4e9dbd4fc65257",
-      "user": "6a4070e07e4e9dbd4fc6524f",
-      "listing": "6a4070e07e4e9dbd4fc65253",
-      "createdAt": "2026-06-28T00:54:56.662Z",
-      "updatedAt": "2026-06-28T00:54:56.662Z",
+      "_id": "6a41bf006980e8e79d3e1bfd",
+      "user": "6a41beff6980e8e79d3e1bf5",
+      "listing": "6a41bf006980e8e79d3e1bf9",
+      "createdAt": "2026-06-29T00:40:32.094Z",
+      "updatedAt": "2026-06-29T00:40:32.094Z",
       "__v": 0
     }
   ]
