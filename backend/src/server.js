@@ -9,6 +9,9 @@ const connectDB = require("./config/db");
 // avoids that path entirely.
 dns.setDefaultResultOrder("ipv4first");
 
+console.log("[diagnostic] container boot time (UTC):", new Date().toISOString());
+console.log("[diagnostic] node version:", process.version);
+
 const PORT = process.env.PORT || 5000;
 
 async function start() {
