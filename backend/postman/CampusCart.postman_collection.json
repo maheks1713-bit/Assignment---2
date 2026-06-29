@@ -5,7 +5,7 @@
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
   },
   "variable": [
-    { "key": "baseUrl", "value": "http://localhost:5000" },
+    { "key": "baseUrl", "value": "http://3.15.207.244:5000" },
     { "key": "token", "value": "" },
     { "key": "listingId", "value": "" }
   ],
@@ -17,7 +17,7 @@
         "header": [{ "key": "Content-Type", "value": "application/json" }],
         "body": {
           "mode": "raw",
-          "raw": "{\n  \"fullName\": \"Jane Smith\",\n  \"universityEmail\": \"j.smith@dal.ca\",\n  \"studentId\": \"B01234567\",\n  \"password\": \"Password123\"\n}"
+          "raw": "{\n  \"fullName\": \"Mahek Shah\",\n  \"universityEmail\": \"mahek.demo@dal.ca\",\n  \"studentId\": \"B01043202\",\n  \"password\": \"Password123\"\n}"
         },
         "url": "{{baseUrl}}/api/auth/register"
       },
@@ -41,7 +41,7 @@
         "header": [{ "key": "Content-Type", "value": "application/json" }],
         "body": {
           "mode": "raw",
-          "raw": "{\n  \"fullName\": \"Jane Smith\",\n  \"universityEmail\": \"j.smith@dal.ca\",\n  \"password\": \"Password123\"\n}"
+          "raw": "{\n  \"fullName\": \"Mahek Shah\",\n  \"universityEmail\": \"mahek.demo@dal.ca\",\n  \"password\": \"Password123\"\n}"
         },
         "url": "{{baseUrl}}/api/auth/register"
       }

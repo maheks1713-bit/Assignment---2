@@ -697,29 +697,53 @@ add_bullets([
 add_heading("4.1 Technology Stack", level=2)
 add_bullets([
     "Runtime/Framework: Node.js + Express.js",
-    "Database: MongoDB Atlas (cloud-hosted), accessed via Mongoose",
+    "Database: MongoDB Community Edition 8.0, accessed via Mongoose",
     "Authentication: JSON Web Tokens (jsonwebtoken), bcryptjs for password hashing",
     "Validation/Security middleware: express-validator, express-mongo-sanitize, helmet, cors, express-rate-limit",
-    "Hosting (backend): Render (Node web service, free tier, auto-deploys from Git)",
+    "Process manager: PM2 (keeps the API running continuously and restarts it automatically on crash or instance reboot)",
+    "Hosting (backend + database): a single AWS EC2 t3.micro instance (Ubuntu 24.04 LTS)",
 ])
+add_para(
+    "Note on hosting choice: the database was initially provisioned on MongoDB Atlas (the architecture described "
+    "in the Group 8 proposal) and was fully functional from a local development machine. However, the TLS "
+    "handshake between Atlas and every containerized PaaS host tested (Render and Railway) consistently failed "
+    "with a low-level SSL alert specific to MongoDB's native wire protocol on port 27017, while every other "
+    "outbound HTTPS connection from those same hosts (GitHub, npm, Atlas's own web dashboard) succeeded normally. "
+    "After ruling out credentials, IP allow-listing, cluster health, Node.js version, and TLS protocol version as "
+    "causes, the API and database were deployed together on a single AWS EC2 instance so that the connection "
+    "is local (localhost) rather than crossing the public internet to Atlas - eliminating the failing network "
+    "path entirely while keeping the same MongoDB/Mongoose codebase unchanged.",
+    italic=True, size=9.5, color=GREY,
+)
 
 add_heading("4.2 Live Endpoint URLs", level=2)
-add_para("[ TODO - fill in after deploying to Render/Heroku/AWS ]", bold=True, color=RED)
 table = doc.add_table(rows=1, cols=3)
 table.style = "Light Grid Accent 1"
 hdr = table.rows[0].cells
 for i, h in enumerate(["Endpoint", "Method", "Live URL"]):
     hdr[i].text = h
     hdr[i].paragraphs[0].runs[0].bold = True
-for ep, method in [("Health check", "GET"), ("Register", "POST"), ("Login", "POST"), ("Create Listing", "POST"), ("Browse Listings", "GET")]:
+base = "http://3.15.207.244:5000"
+for ep, method, path in [
+    ("Health check", "GET", "/api/health"),
+    ("Register", "POST", "/api/auth/register"),
+    ("Login", "POST", "/api/auth/login"),
+    ("Create Listing [REQUIRED]", "POST", "/api/listings"),
+    ("Browse Listings [REQUIRED]", "GET", "/api/listings"),
+]:
     row = table.add_row().cells
     row[0].text = ep
     row[1].text = method
-    row[2].text = "https://<your-app-name>.onrender.com/api/..."
+    row[2].text = base + path
 doc.add_paragraph()
+add_para(
+    "The server is kept running continuously via PM2 with auto-restart on crash and on instance reboot, so these "
+    "URLs should remain live for grading.",
+    italic=True, size=9.5, color=GREY,
+)
 
 add_heading("4.3 Source Code", level=2)
-add_para("GitHub repository: [ TODO - paste your repo URL here, or note that a zip file is attached on Brightspace ]", bold=True, color=RED)
+add_para("GitHub repository: https://github.com/maheks1713-bit/Assignment---2", bold=True)
 add_para(
     "The backend source code is provided in the /backend directory of this submission, containing the Express "
     "app (src/app.js, src/server.js), Mongoose models (src/models/), JWT/RBAC middleware (src/middleware/auth.js), "
@@ -731,14 +755,15 @@ add_para(
 add_heading("4.4 Database Source Files", level=2)
 add_para(
     "campuscart-sample-data.json (included with this submission) contains a full export of the seeded "
-    "User, Listing, and SavedListing collections, produced by running `npm run seed` against the database. "
-    "This satisfies the requirement to provide the source files for the database with data in it."
+    "User, Listing, and SavedListing collections, taken directly from the live deployed database on the EC2 "
+    "instance by running `npm run seed` there. This satisfies the requirement to provide the source files for "
+    "the database with data in it."
 )
 
 add_heading("4.5 Postman Evidence", level=2)
 add_para(
-    "A ready-to-import Postman collection (backend/postman/CampusCart.postman_collection.json) is included. "
-    "Import it, set the collection variable baseUrl to the deployed Render URL, and run the requests in order "
+    "A ready-to-import Postman collection (backend/postman/CampusCart.postman_collection.json) is included, "
+    "pre-configured with baseUrl set to the live URL above. Import it and run the requests in order "
     "(01 through 11) to reproduce every screenshot listed below."
 )
 
@@ -754,7 +779,7 @@ screenshot_list = [
     "09 - Browse Listings [REQUIRED ENDPOINT] (public, filter+sort) - 200 response showing the listing created in step 6, proving persistence",
     "10 - Get Listing By Id - 200 response showing views incremented",
     "11 - Get Listing By Id (error: not found) - 404 response",
-    "12 - MongoDB Atlas dashboard (or Compass) showing the persisted 'listings' collection with the document created via Postman",
+    "12 - mongosh session on the EC2 instance (db.listings.find()) showing the persisted document created via Postman",
 ]
 add_para("Required screenshots (annotate each with the step name before pasting):", bold=True, space_after=4)
 for label in screenshot_list:
